@@ -29,12 +29,13 @@ class Pessoa{
         return $this->$atributo;
     }
     function __set($atributo, $valor){
-        if($atributo == "nome"){
-            $this->$atributo = strtoupper($valor);
-        } 
-        else {
-            $this-> $atributo = $valor;
-        }
+        // if($atributo == "nome"){
+        //     $this->$atributo = strtoupper($valor);
+        // } 
+        // else {
+        //     $this-> $atributo = $valor;
+        // }
+        $this->$atributo = $valor;
         
         
     }
