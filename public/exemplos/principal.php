@@ -13,6 +13,9 @@ $c1-> ligar();
 echo "<br>";
 $c1->ligarParaBrisa();
 
+// instanciando a classe Moto
 
+$m1 = new Moto("Honda", "Bis");
+$m1->descansoAtivo();
 
 

@@ -44,3 +44,10 @@ class Carro extends Veiculo{
     }
 }
 
+// criando a classe moto e herdando da classe Veiculo
+class Moto extends Veiculo{
+    public function descansoAtivo(){
+        echo "{$this->nomeClasse} está com o apoio do descanso!";
+    }
+}
+
