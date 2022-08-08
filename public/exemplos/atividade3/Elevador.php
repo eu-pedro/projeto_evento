@@ -13,13 +13,14 @@ class Elevador{
     }
 
     public static function entrar(){
-        self::$resultadoPessoas = self::$quantidadePessoas = 1;
+        self::$quantidadePessoas = 1;
 
-        if(self::$quantidadePessoas > self::$capacidadeElevador){
+        if(self::$resultadoPessoas > self::$capacidadeElevador){
             echo "A capacidade máxima do elevador foi atingida!";
         }
         else{
             echo "<br>Uma pessoa entrou no elevador! Total de pessoas no elevador: ". self::$resultadoPessoas += 1;
+            echo "<br>";
         }
     }
 
