@@ -1,9 +1,9 @@
 <?php 
-/*
-echo "<pre>";
-   print_r($_FILES);
-echo "<pre>";
-*/
+
+// echo "<pre>";
+//    print_r($_FILES);
+// echo "<pre>";
+
 
 $nomeArquivo = $_FILES["banner"]["name"]; // retorna toda informação do arquivo
 $nomeTemporario = $_FILES["banner"]["tmp_name"];
@@ -27,9 +27,15 @@ else{
 
         // copiando imagens para o servidor
         $pasta = "imagens/";
-        $caminhoFinal = $pasta.$nomeArquivo;
-        move_uploaded_file($nomeTemporario, $caminhoFinal);
 
+        // Iremos verificar se a pasta existe ou não
+        if(!file_exists($pasta)){
+            mkdir($pasta, 0777,true); // a função mkdir precisa de 3 parâmetros: 1 = nome da pasta, 2 = permissão para ler e escrever na pasta, 3 = se poderá criar subpastas ou não
+        }
+
+        $caminhoFinal = $pasta.$nomeArquivo;
+        move_uploaded_file($nomeTemporario, $caminhoFinal); // tira o arquivo do seu pc e manda pro servidor
+        echo "<img src='{$caminhoFinal}' width='200px' height='200px'>";
 
     }
     else{
