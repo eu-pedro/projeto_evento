@@ -12,30 +12,45 @@ class Evento{
     public function inicio($campos, $arquivo){
         // Verficar se os campos estão em branco
         if($this->recebeDados($campos)){
-            $this->mensagem = [
-                "status" => true,
-                "msg" => "Dados preenchidos com sucesso!",
-
-            ];
-            print_r($this->mensagem);
+            if($this->validaData($campos["dataEvento"])){
+                if($this->recebeArquivo($arquivo)){
+                    $this->mensagem = [
+                        "status" => true,
+                        "msg" => "Evento cadastrado com sucesso!"
+                    ];
+                }
+                else{
+                    $this->mensagem = [
+                        "status" => false,
+                        "msg" => "Você precisa enviar uma imagem com formato jpg ou png"
+                    ];
+                }   
+            }
+            else{
+                $this->mensagem = [
+                    "status" => false,
+                    "msg"  => "Data do evento é anterior à data atual"
+                ];
+            }
         }
         else{
             $this->mensagem = [
                 "status" => false,
                 "msg" => "Os campos não podem ficar em branco",
             ];
-            print_r($this->mensagem);
+            
         }
+        return $this->mensagem;
     }
 
     public function validaData ($data){
         $dataEvento = new DateTime($data); // esta classe precisa de uma data no padrão americano para funcionar
         $dataAtual = new DateTime("now"); // estamos pegando a data atual
     
-        echo $dataEvento->format("d/m/Y"); // mostrando a data no padrão brasileiro
+        // echo $dataEvento->format("d/m/Y"); // mostrando a data no padrão brasileiro
         
-        echo "<br>";
-        print_r($dataAtual);
+        // echo "<br>";
+        // print_r($dataAtual);
     
         if($dataEvento > $dataAtual){
             // echo "<p> Data do evento cadastrada com sucesso!</p>";
@@ -121,8 +136,9 @@ class Evento{
     }
 
 }
-
+/*
 $meuEvento = new Evento(); // Instanciando um objeto
 print_r($meuEvento);
 echo "<hr>";
 $meuEvento->inicio($_POST, $_FILES);
+*/
