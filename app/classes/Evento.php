@@ -9,6 +9,12 @@ class Evento{
 
     // Criando métodos: comportamentos
 
+         /**
+         * @param $campos: Este parâmetro espera receber uma constante ($_POST) 
+         * @param $arquivo: Este parâmetro espera receber uma constante $_FILES["banner"]
+         */
+
+
     public function inicio($campos, $arquivo){
         // Verficar se os campos estão em branco
         if($this->recebeDados($campos)){

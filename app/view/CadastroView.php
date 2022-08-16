@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -36,14 +41,32 @@
             </div>
         </nav>
     </header>
+
+
     
     <main class="container-fluid mt-5">
+        
+        <?php
+        // isset()  = verifica se alguma variável existe
+        if(isset($_SESSION["mensagem"])){
+            if($_SESSION["mensagem"]["status"]){
+                echo "
+                    <div class=''>
+
+                    </div>
+                ";
+            }   
+            else{
+
+            } 
+    }
+?>
 
         <h1 class="text-center fw-bold ">Cadastre um novo evento</h1>
         
         <hr>
 
-        <form action="classes/Evento.php" method="POST" class="mt-5" enctype="multipart/form-data">
+        <form action="../controller/EventoController.php" method="POST" class="mt-5" enctype="multipart/form-data">
 
             <section class="container col-md-6">
                     <div class="row mb-3">
