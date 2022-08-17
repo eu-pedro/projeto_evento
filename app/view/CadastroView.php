@@ -1,8 +1,7 @@
 <?php
 session_start();
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -51,8 +50,8 @@ session_start();
         if(isset($_SESSION["mensagem"])){
             if($_SESSION["mensagem"]["status"]){
                 echo "
-                    <div class=''>
-
+                    <div class='alert alert-success alert-dismissible fade show'>
+                        
                     </div>
                 ";
             }   
