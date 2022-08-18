@@ -41,25 +41,34 @@ session_start();
         </nav>
     </header>
 
-
-    
-    <main class="container-fluid mt-5">
-        
-        <?php
-        // isset()  = verifica se alguma variável existe
-        if(isset($_SESSION["mensagem"])){
+    <?php
+          // isset()  = verifica se alguma variável existe
+          if(isset($_SESSION["mensagem"])){
             if($_SESSION["mensagem"]["status"]){
                 echo "
                     <div class='alert alert-success alert-dismissible fade show'>
-                        
+                        <h4 class='text-center'>{$_SESSION['mensagem']['msg']}</h4> 
+                        <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
                     </div>
                 ";
             }   
             else{
-
+                echo "
+                    <div class='alert alert-danger alert-dismissible fade show'>
+                        <h4 class='text-center'>{$_SESSION['mensagem']['msg']}</h4> 
+                        <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+                    </div>
+                ";
             } 
+            unset($_SESSION["mensagem"]);  // Destruindo a variável de sessão
+
+
     }
 ?>
+    
+    <main class="container-fluid mt-5">
+        
+      
 
         <h1 class="text-center fw-bold ">Cadastre um novo evento</h1>
         
