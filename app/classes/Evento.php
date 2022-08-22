@@ -126,6 +126,7 @@ class Evento{
 
         // echo "<img src='{$caminhoFinal}' width='200px' height='200px'>";
 
+        $this->banner = $caminhoFinal;
         return true;
         }
 
@@ -134,6 +135,7 @@ class Evento{
 
         else{
          //echo "<br>Formato de arquivo inválido!";
+         
          return false;
         }
 
