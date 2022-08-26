@@ -13,19 +13,27 @@
     <hr>
 
     <section class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
-        <section>
+        <?php
+            if($meuEventoDAO->consultar()):
+                foreach($meuEventoDAO->consultar(true) as $elemento):
+                
+                
+                
+        ?>
 
-            <div class="card">
+            <section>
 
-                <img src="" alt="" class="card-img-top">
+              <div class="card h-100">
 
-                <div class="card-body">
-                    <h5 class="card-title text-center">Título do evento</h5>
-                    <p class="card-text text-center">O evento ocorrerá na data: 31/12/2022</p>
-                </div>
+                 <img src=<?=$elemento["foto_evento"] ?> alt="" class="card-img-top">
+                    <!--  POSSO USAR O "=" QUE SUBSTITUI UM ECHO NO PHP. -->
+                 <div class="card-body">
+                        <h5 class="card-title text-center"><?=ucfirst($elemento["nome_evento"])?></h5> <!-- o método ucfirst() deixa a letra de cada palavra maiúscula -->
+                        <p class="card-text text-center">O evento ocorrerá na data: <?=$elemento["data_evento"]?> </p>
+                  </div>
 
-                <div class="card-footer">
-                    <form action="" method="post" class="d-flex justify-content-around">
+                    <div class="card-footer">
+                        <form action="" method="post" class="d-flex justify-content-around">
                         <button type="submit" class="btn btn-info col-5 d-flex justify-content-center align-items-center">
                         Editar <span class="material-symbols-outlined ms-3">edit</span>
                         </button>
@@ -33,14 +41,23 @@
                         <button type="submit" class="btn btn-danger col-5 d-flex justify-content-center align-items-center">
                         Excluir <span class="material-symbols-outlined ms-3">delete</span>
                         </button>
+                        <!-- O campo hidden irá armazenar, de forma oculta, o id de cada item do banco de dados -->
+                        <input type="hidden" name="id_evento" value="<?= $elemento["id_evento"]?>">
                     
-                    </form>
-                </div>
+                        </form>
+                    </div>
 
-            </div>
+              </div>
 
-        </section>
+            </section>
+
+        <?php
+            endforeach;
+            endif;
+        ?>
+                    
     </section>
+
 
 </main>
 

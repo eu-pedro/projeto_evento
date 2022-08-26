@@ -29,15 +29,31 @@ class EventoDAO{
         }
     }
 
-    public function consultar(){
+    public function consultar($dataBr = false){
         $sql = "SELECT * FROM {$this->tabela}";
         $preparacao = Conexao::getConexao()->prepare($sql);
 
         $preparacao->execute();
 
         if($preparacao->rowCount() > 0){
-            return $preparacao->fetchAll(PDO::FETCH_ASSOC); // o método fetchAll() retorna todos os registros do banco de dados e o valor PDO::FETCH_ASSOC faz a associação do nome dos campos da tabela com os índices no vetor
+            $resultado = $preparacao->fetchAll(PDO::FETCH_ASSOC); // o método fetchAll() retorna todos os registros do banco de dados e o valor PDO::FETCH_ASSOC faz a associação do nome dos campos da tabela com os índices no vetor
+
+        if($dataBr){
+
+            
+
+            foreach($resultado as $indice => $itens){
+                // a variável indice está percorrendo $resultado e $itens está percorrendo os conteúdos de indice
+                $data = new DateTime($itens["data_evento"]);
+                $resultado[$indice]["data_evento"] = $data->format("d/m/Y");
+
+
+            }
         }
+        return $resultado;
+
+        }
+
         else{
             return false;
         }
