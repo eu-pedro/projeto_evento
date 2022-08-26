@@ -30,6 +30,8 @@ class EventoDAO{
     }
 
     public function consultar($dataBr = false){
+
+
         $sql = "SELECT * FROM {$this->tabela}";
         $preparacao = Conexao::getConexao()->prepare($sql);
 
@@ -57,8 +59,29 @@ class EventoDAO{
         else{
             return false;
         }
-     }
+    }
 
+    public function consultarUnico($id){
+        $sql = "SELECT * FROM {$this->tabela} WHERE id_evento = :id";
+        $preparacao = Conexao::getConexao()->prepare($sql);
+
+        $preparacao->bindValue(":id", $id);
+
+        $preparacao->execute();
+
+        if($preparacao->rowCount() > 0){
+            return $preparacao->fetchAll(PDO::FETCH_ASSOC); // o método fetchAll() retorna todos os registros do banco de dados e o valor PDO::FETCH_ASSOC faz a associação do nome dos campos da tabela com os índices no vetor
+
+        
+        }
+
+        else{
+            return false;
+        }
+
+
+    }
+   
     public function atualizar(){
 
      }

@@ -33,7 +33,7 @@
                   </div>
 
                     <div class="card-footer">
-                        <form action="" method="post" class="d-flex justify-content-around">
+                        <form action="AtualizarEventoView.php" method="post" class="d-flex justify-content-around">
                         <button type="submit" class="btn btn-info col-5 d-flex justify-content-center align-items-center">
                         Editar <span class="material-symbols-outlined ms-3">edit</span>
                         </button>
