@@ -37,12 +37,14 @@
                         <button type="submit" class="btn btn-info col-5 d-flex justify-content-center align-items-center">
                         Editar <span class="material-symbols-outlined ms-3">edit</span>
                         </button>
-
-                        <button type="submit" class="btn btn-danger col-5 d-flex justify-content-center align-items-center">
-                        Excluir <span class="material-symbols-outlined ms-3">delete</span>
-                        </button>
+                        
                         <!-- O campo hidden irá armazenar, de forma oculta, o id de cada item do banco de dados -->
                         <input type="hidden" name="id_evento" value="<?= $elemento["id_evento"]?>">
+
+                        <button type="button" class="btn btn-danger col-5 d-flex justify-content-center align-items-center">
+                        Excluir <span class="material-symbols-outlined ms-3">delete</span>
+                        </button>
+                        
                     
                         </form>
                     </div>

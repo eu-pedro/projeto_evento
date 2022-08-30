@@ -82,9 +82,23 @@ class EventoDAO{
 
     }
    
-    public function atualizar(){
+    public function atualizar(Evento $evento, $id){
+        $sql = "UPDATE {$this->tabela} SET nome_evento = :nome, data_evento = :dataEvento, foto_evento = :foto WHERE id_evento = :id";
 
-     }
+        $preparacao = Conexao::getConexao()->prepare($sql);
+        $preparacao->bindValue(":nome", $evento->nomeEvento);
+        $preparacao->bindValue(":dataEvento", $evento->dataEvento);
+        $preparacao->bindValue(":foto", $evento->banner);
+        $preparacao->bindValue(":id", $id);
+
+        $preparacao->execute();
+
+        if($preparacao->rowCount() > 0){
+            return true;
+        }
+        return false;
+
+    }
 
     public function deletar(){
 

@@ -1,36 +1,44 @@
 <?php
-
+    
     include_once("../includes/cabecalho.php");
     require_once("../model/EventoDAO.php");
-    $id_evento = $_POST["id_evento"];
+
+    if(!isset($_SESSION["id_evento"])){
+        $_SESSION["id_evento"] = $_POST["id_evento"];
+        
+    }
+
+    
     $meuEventoDAO = new EventoDAO();
 
-    $resultado = $meuEventoDAO->consultarUnico($id_evento);
+    $resultado = $meuEventoDAO->consultarUnico($_SESSION["id_evento"]);
     $elemento = $resultado[0];
     //print_r($resultado);
     //echo "o id do evento selecionado é {$id_evento}";
     // isset()  = verifica se alguma variável existe
-    if(isset($_SESSION["mensagem"])){
-        if($_SESSION["mensagem"]["status"]){
+    
+
+    if(isset($_SESSION["atualizar"])){
+        if($_SESSION["atualizar"]["status"]){
             echo "
                 <div class='alert alert-success alert-dismissible fade show'>
-                <h4 class='text-center'>{$_SESSION['mensagem']['msg']}</h4> 
+                <h4 class='text-center'>{$_SESSION['atualizar']['msg']}</h4> 
                 <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
                 </div>
                 ";
         }   
-        else{
+         else{
             echo "
                 <div class='alert alert-danger alert-dismissible fade show'>
-                <h4 class='text-center'>{$_SESSION['mensagem']['msg']}</h4> 
+                <h4 class='text-center'>{$_SESSION['atualizar']['msg']}</h4> 
                 <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
                 </div>
                 ";
-        } 
-        unset($_SESSION["mensagem"]);  // Destruindo a variável de sessão
+         } 
+        }     
+         unset($_SESSION["atualizar"]);  // Destruindo a variável de sessão
 
-
-    }
+    
 ?>
     
     <main class="container-fluid mt-5">
@@ -71,8 +79,8 @@
                         <input type="file" name="banner" id="banner" class="form-control" accept="image/*" >
 
                     </div>
-
-                    <button type="submit" class="btn btn-primary my-3 col-12"> Cadastrar </button>
+                    <input type="hidden" name="atualizar" value="<?= $elemento['id_evento']?>">
+                    <button type="submit" class="btn btn-primary my-3 col-12"> Atualizar </button>
 
             </section>
 

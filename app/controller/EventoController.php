@@ -8,13 +8,23 @@ $meuEvento = new Evento();
 $meuEventoDAO = new EventoDAO();
 
 
-$_SESSION["mensagem"] = $meuEvento -> inicio($_POST, $_FILES['banner']);
 
-if($_SESSION["mensagem"]["status"]){
+if(isset($_POST["cadastrar"])){
+    $_SESSION["mensagem"] = $meuEvento -> inicio($_POST, $_FILES['banner']);
+    if($_SESSION["mensagem"]["status"]){
     $meuEventoDAO->inserir($meuEvento);
+    header("Location: ../view/CadastroView.php"); // Redirecionando o usuário para a página CadastroView.php
+    die();
 }
- header("Location: ../view/CadastroView.php"); // Redirecionando o usuário para a página CadastroView.php
-die();
+}
+if(isset($_POST["atualizar"])){
+    $_SESSION["atualizar"] = $meuEvento->inicio($_POST, $_FILES['banner']);
+    if($_SESSION["atualizar"]["status"]){
+        $meuEventoDAO->atualizar($meuEvento, $_POST["atualizar"]); // estamos passando como parâmetro um objeto Evento e o id do evento que esta atriubuído ao $_POST["atualizar"]
+    }
+    header("Location: ../view/AtualizarEventoView.php");
+}
+
 
 // echo "<pre>";
 //     print_r($meuEventoDAO -> consultar());

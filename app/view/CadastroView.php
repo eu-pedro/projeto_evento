@@ -10,14 +10,14 @@
                 </div>
                 ";
         }   
-        else{
+         else{
             echo "
                 <div class='alert alert-danger alert-dismissible fade show'>
                 <h4 class='text-center'>{$_SESSION['mensagem']['msg']}</h4> 
                 <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
                 </div>
                 ";
-        } 
+         } 
         unset($_SESSION["mensagem"]);  // Destruindo a variável de sessão
 
 
@@ -54,7 +54,7 @@
                         <input type="date" name="dataEvento" id="dataEvento" class="form-control" >
                     </div>
 
-                    <div class="row mb-3">
+                    <div class="row mb-3 cols-6">
                         <label for="banner" class="form-label fs-5">
                             Banner do Evento <span class="text-danger">*</span>
                         </label>
@@ -62,7 +62,7 @@
                         <input type="file" name="banner" id="banner" class="form-control" accept="image/*" >
 
                     </div>
-
+                    <input type="hidden" name="cadastrar">
                     <button type="submit" class="btn btn-primary my-3 col-12"> Cadastrar </button>
 
             </section>
