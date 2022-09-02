@@ -42,7 +42,7 @@
                         <!-- O campo hidden irá armazenar, de forma oculta, o id de cada item do banco de dados -->
                         <input type="hidden" name="id_evento" value="<?= $elemento["id_evento"]?>">
 
-                        <button type="button" class="btn btn-danger col-5 d-flex justify-content-center align-items-center">
+                        <button type="button" class="btn btn-danger col-5 d-flex justify-content-center align-items-center excluir" data-bs-toggle="modal" data-bs-target="#modalExcluir" id="<?= $elemento["id_evento"]?>">
                         Excluir <span class="material-symbols-outlined ms-3">delete</span>
                         </button>
                         
@@ -64,7 +64,29 @@
 
 </main>
 
+<!-- Modal para Excluir -->
+<section class="modal fade" id="modalExcluir"> 
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="../controller/EventoController.php" method="post">
+                <div class="modal-body">
+                    Tem certeza que deseja excluir esse evento?
+                    <input type="hidden" name="excluir" id="excluirEvento">
+                </div>
 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger" id="confirmar">Confirmar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+ </section>
 <?php
     include_once("../includes/Rodape.php");
 ?>

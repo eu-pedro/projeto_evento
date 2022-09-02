@@ -25,6 +25,12 @@ if(isset($_POST["atualizar"])){
     header("Location: ../view/AtualizarEventoView.php");
 }
 
+if(isset($_POST["excluir"])){
+    //echo "o id para excluir é {$_POST["excluir"]}";
+    $meuEventoDAO->deletar($_POST["excluir"]);
+    header("Location: ../view/VisualizarEventoView.php");
+    die();
+}
 
 // echo "<pre>";
 //     print_r($meuEventoDAO -> consultar());
